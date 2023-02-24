@@ -1,49 +1,46 @@
 <template>
-    <ion-page>
-        <ion-header :translucent="true">
-            <ion-toolbar>
-                <ion-title>Inbox</ion-title>
-            </ion-toolbar>
-        </ion-header>
+    <IonPage>
+        <IonContent :fullscreen="true">
+            <IonRow>
+                <IonCol>
+                    <CurrentWeather />
+                </IonCol>
+            </IonRow>
 
-        <ion-content :fullscreen="true">
-            <ion-refresher slot="fixed" @ionRefresh="refresh($event)">
-                <ion-refresher-content></ion-refresher-content>
-            </ion-refresher>
+            <IonRow>
+                <IonCol>
+                    <WeatherForecast />
+                </IonCol>
+            </IonRow>
 
-            <ion-header collapse="condense">
-                <ion-toolbar>
-                    <ion-title size="large">Inbox</ion-title>
-                </ion-toolbar>
-            </ion-header>
+            <IonRow>
+                <IonCol size="4">
+                    <IonRow>
+                        <IonCol size="12">
+                            <WindInformation />
+                        </IonCol>
 
-            <ion-list>
-                <MessageListItem v-for="message in messages" :key="message.id" :message="message" />
-            </ion-list>
-        </ion-content>
-    </ion-page>
+                        <IonCol size="12">
+                            <SunInformation />
+                        </IonCol>
+                    </IonRow>
+                </IonCol>
+
+                <IonCol size="8">
+                   <OtherInformations />
+                </IonCol>
+            </IonRow>
+        </IonContent>
+    </IonPage>
 </template>
 
 <script setup lang="ts">
-import {
-    IonContent,
-    IonHeader,
-    IonList,
-    IonPage,
-    IonRefresher,
-    IonRefresherContent,
-    IonTitle,
-    IonToolbar,
-} from '@ionic/vue';
-import MessageListItem from '@/components/MessageListItem.vue';
-import { getMessages, Message } from '@/data/messages';
-import { ref } from 'vue';
+import CurrentWeather from "@/components/HomePage/CurrentWeather.vue";
+import OtherInformations from "@/components/HomePage/OtherInformations.vue";
+import SunInformation from "@/components/HomePage/SunInformation.vue";
+import WeatherForecast from "@/components/HomePage/WeatherForecast.vue";
+import WindInformation from "@/components/HomePage/WindInformation.vue";
+import { IonCol, IonRow, IonContent, IonPage } from '@ionic/vue'
 
-const messages = ref<Message[]>(getMessages());
 
-const refresh = (ev: CustomEvent) => {
-    setTimeout(() => {
-        ev.detail.complete();
-    }, 3000);
-};
 </script>
