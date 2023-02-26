@@ -5,11 +5,11 @@
                 <IonItem v-for="(info, key) in information" :key="key">
                     <IonRow style="width: 100%">
                         <IonCol size="9">
-                            <p>{{ key }}</p>
+                            <p>{{ getLabel(key) }}</p>
                         </IonCol>
                         <IonCol size="3">
                             <IonLabel>
-                                <small>{{ info[10] }}</small>
+                                {{ info[timeIndex] }}
                             </IonLabel>
                         </IonCol>
                     </IonRow>
@@ -23,6 +23,7 @@
     import { IonCard, IonCardContent, IonList, IonItem, IonLabel, IonRow, IonCol } from '@ionic/vue'
     import { HourlyInformation } from '@/types/weather';
     import { computed } from 'vue';
+    import { getCurrentHourIndex } from '@/helpers';
 
     const props = defineProps<{
         data: HourlyInformation
@@ -34,5 +35,26 @@
 
         return usefulData
     })
+
+    const timeIndex = computed(() => getCurrentHourIndex())
+
+    function getLabel(key: string) {
+        switch (key) {
+            case 'apparent_temperature':
+                return 'Apparent Temperature'
+            case 'relativehumidity_2m':
+                return 'Humidity'
+            case 'cloudcover':
+                return 'Cloud Over'
+            case 'windDirection':
+                return 'Direction du vent'
+            case 'visibility':
+                return 'Visibility'
+            case 'shortwave_radiation':
+                return 'Shortwave Radiation'
+            default:
+                return key
+        }
+    }
 
 </script>

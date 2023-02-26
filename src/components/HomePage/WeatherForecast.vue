@@ -10,7 +10,9 @@
                     <IonRow style="width: 100%">
                         <IonCol size="8">
                             <IonLabel>
-                                <h4>{{ daily.time[i-1] }}</h4>
+                                <h4>
+                                    {{ getDayName(daily.time[i-1]) }}
+                                </h4>
                             </IonLabel>
                         </IonCol>
                         <IonCol size="4">
@@ -31,7 +33,7 @@
 <script setup lang="ts">
     import { IonCard, IonCardHeader, IonCardSubtitle, IonCardContent, IonList, IonItem, IonLabel, IonRow, IonCol } from '@ionic/vue'
     import { DailyInformation } from '@/types/weather';
-    import { roundTemperature } from '@/helpers';
+    import { roundTemperature, getDayName } from '@/helpers';
 
     defineProps<{
         daily?: DailyInformation
