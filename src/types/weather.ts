@@ -10,7 +10,7 @@ export type DailyTime = string[]
 
 export type Temperature2M = number[]
 
-export type SunInformation = number[]
+export type SunInformation = string[]
 
 export type WindSpeed = number[]
 
@@ -23,9 +23,15 @@ export interface DailyInformation {
     sunrise: SunInformation
     sunset: SunInformation
     weathercode: number
-    windspeed_10m_max: WindSpeed
-    windspeed_10m_min: WindSpeed
-    winddirection_10m_dominant: WindDirection
+}
+
+export interface HourlyInformation {
+    time: string[]
+    apparent_temperature: number[]
+    relativehumidity_2m: number[]
+    cloudcover: number[]
+    visibility: number[]
+    shortwave_radiation: number[]
 }
 
 export interface BaseWeather {
@@ -44,4 +50,5 @@ export interface Weather extends BaseWeather {
     daily_units: {
         [key: string]: string
     }
+    hourly: HourlyInformation
 }
