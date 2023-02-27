@@ -8,17 +8,24 @@
     import { IonApp, IonRouterOutlet } from '@ionic/vue';
     import { Geolocation } from '@capacitor/geolocation';
     import { onMounted } from 'vue'
+    import store from './services/Storage'
 
-    const printCurrentPosition = async () => {
+    const handleCurrentPosition = async () => {
         try {
-            const coordinates = await Geolocation.getCurrentPosition();
-            console.log('Current position:', coordinates);
+            const geolocationIsSetted = await store.get('geolocation');
+            if (geolocationIsSetted) return
+
+            const { coords } = await Geolocation.getCurrentPosition();
+            await store.set('geolocation', {
+                latitude: coords.latitude,
+                longitude: coords.longitude
+            })
         } catch (error) {
             alert("You should enable location permissions to use this app")
         }
     };
     
     onMounted(() => {
-        printCurrentPosition();
+        handleCurrentPosition();
     })
 </script>
