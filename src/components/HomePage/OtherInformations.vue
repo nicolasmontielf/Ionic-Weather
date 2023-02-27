@@ -5,12 +5,12 @@
                 <IonItem v-for="(info, key) in information" :key="key">
                     <IonRow style="width: 100%">
                         <IonCol size="9">
-                            <p>{{ getLabel(key) }}</p>
+                            <p>{{ info.label }}</p>
                         </IonCol>
                         <IonCol size="3">
-                            <IonLabel>
-                                {{ info[timeIndex] }}
-                            </IonLabel>
+                            <small>
+                                {{ info.value[timeIndex] }} {{ info.unit }}
+                            </small>
                         </IonCol>
                     </IonRow>
                 </IonItem>
@@ -20,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-    import { IonCard, IonCardContent, IonList, IonItem, IonLabel, IonRow, IonCol } from '@ionic/vue'
+    import { IonCard, IonCardContent, IonList, IonItem, IonRow, IonCol } from '@ionic/vue'
     import { HourlyInformation } from '@/types/weather';
     import { computed } from 'vue';
     import { getCurrentHourIndex } from '@/helpers';
@@ -29,32 +29,36 @@
         data: HourlyInformation
     }>()
 
-    const information = computed<Omit<HourlyInformation, 'time'>>(() => {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const { time, ...usefulData } = props.data
-
-        return usefulData
+    const information = computed(() => {
+        return {
+            apparent_temperature: {
+                label: 'Apparent Temperature',
+                unit: '°C',
+                value: props.data.apparent_temperature,
+            },
+            relativehumidity_2m: {
+                label: 'Humidity',
+                unit: '%',
+                value: props.data.relativehumidity_2m,
+            },
+            cloudcover: {
+                label: 'Cloud Cover',
+                unit: '%',
+                value: props.data.cloudcover,
+            },
+            visibility: {
+                label: 'Visibility',
+                unit: 'm',
+                value: props.data.visibility,
+            },
+            shortwave_radiation: {
+                label: 'Shortwave Radiation',
+                unit: 'W/m²',
+                value: props.data.shortwave_radiation,
+            }
+        }
     })
 
     const timeIndex = computed(() => getCurrentHourIndex())
-
-    function getLabel(key: string) {
-        switch (key) {
-            case 'apparent_temperature':
-                return 'Apparent Temperature'
-            case 'relativehumidity_2m':
-                return 'Humidity'
-            case 'cloudcover':
-                return 'Cloud Over'
-            case 'windDirection':
-                return 'Direction du vent'
-            case 'visibility':
-                return 'Visibility'
-            case 'shortwave_radiation':
-                return 'Shortwave Radiation'
-            default:
-                return key
-        }
-    }
 
 </script>
