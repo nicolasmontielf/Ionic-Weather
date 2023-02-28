@@ -1,4 +1,4 @@
-import { getDay, getHours, format } from 'date-fns'
+import { getDay, getHours, format, add } from 'date-fns'
 
 const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 
@@ -19,4 +19,13 @@ export function getCurrentHourIndex() {
 
 export function getHourFromDate(date: string) {
     return format(new Date(date), 'HH:mm')
+}
+
+export function getCurrentDateAndNext4Days() {
+    const currentDate = new Date()
+
+    return [
+        format(currentDate, 'yyyy-MM-dd'),
+        format(add(currentDate, { days: 4 }), 'yyyy-MM-dd')
+    ]
 }

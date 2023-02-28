@@ -1,6 +1,7 @@
 import { Weather } from '@/types/weather'
 import axios from 'axios'
 import store from '@/services/Storage'
+import { getCurrentDateAndNext4Days } from '@/helpers'
 
 const WMO = {
     0: 'Clear sky',
@@ -38,6 +39,7 @@ export default class WeatherForecast {
 
     async loadWeatherInfo(): Promise<void> {
         const coords = await store.get('geolocation')
+        const [startDate, endDate] = getCurrentDateAndNext4Days()
 
         const { data } = await axios.get('https://api.open-meteo.com/v1/forecast', {
             params: {
@@ -45,8 +47,8 @@ export default class WeatherForecast {
                 longitude: coords.longitude,
                 timezone: 'America/Sao_Paulo',
                 current_weather: true,
-                start_date: '2023-02-26',
-                end_date: '2023-03-02',
+                start_date: startDate,
+                end_date: endDate,
                 daily: ['temperature_2m_max', 'temperature_2m_min', 'sunrise', 'sunset', 'weathercode'],
                 hourly: ['apparent_temperature', 'relativehumidity_2m', 'cloudcover', 'visibility', 'shortwave_radiation']
             }
