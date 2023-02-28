@@ -2,12 +2,12 @@
     <IonCard class="ion-no-padding ion-no-margin">
         <IonCardContent class="ion-padding-vertical">
             <div>
-                <p><strong>Amanecer: </strong></p>
+                <p><strong>Sunrise: </strong></p>
                 <p>{{ getHourFromDate(sunrise) }}</p>
             </div>
 
             <div>
-                <p><strong>Anochecer: </strong></p>
+                <p><strong>Sunset: </strong></p>
                 <p>{{ getHourFromDate(sunset) }}</p>
             </div>
         </IonCardContent>

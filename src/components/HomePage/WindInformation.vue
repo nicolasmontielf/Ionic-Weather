@@ -2,11 +2,11 @@
     <IonCard class="ion-no-padding ion-no-margin">
         <IonCardContent class="ion-padding-vertical">
             <div>
-                <p><strong>Direccion:</strong></p>
+                <p><strong>Direction:</strong></p>
                 <p>{{ direction }}°</p>
             </div>
             <div>
-                <p><strong>Velocidad:</strong></p>
+                <p><strong>Speed:</strong></p>
                 <p>{{ speed }} km/h</p>
             </div>
         </IonCardContent>

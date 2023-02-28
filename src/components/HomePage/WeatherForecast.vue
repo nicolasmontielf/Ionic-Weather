@@ -1,7 +1,7 @@
 <template>
     <IonCard>
         <IonCardHeader>
-            <IonCardSubtitle>Pronostico de 5 dias</IonCardSubtitle>
+            <IonCardSubtitle>5-days Forecast</IonCardSubtitle>
         </IonCardHeader>
 
         <IonCardContent class="ion-no-padding" v-if="daily?.time">

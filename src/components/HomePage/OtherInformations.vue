@@ -4,7 +4,7 @@
             <IonList>
                 <IonItem v-for="(info, key) in information" :key="key">
                     <IonRow style="width: 100%">
-                        <IonCol size="9">
+                        <IonCol size="9" class="ion-align-self-center">
                             <p>{{ info.label }}</p>
                         </IonCol>
                         <IonCol size="3" class="ion-align-self-center">
@@ -32,27 +32,27 @@
     const information = computed(() => {
         return {
             apparent_temperature: {
-                label: 'Sensacion Termica',
+                label: 'Apparent Temperature',
                 unit: '°C',
                 value: props.data.apparent_temperature,
             },
             relativehumidity_2m: {
-                label: 'Humedad',
+                label: 'Humidity',
                 unit: '%',
                 value: props.data.relativehumidity_2m,
             },
             cloudcover: {
-                label: 'Cobertura de Nubes',
+                label: 'Cloud Cover',
                 unit: '%',
                 value: props.data.cloudcover,
             },
             visibility: {
-                label: 'Visibilidad',
+                label: 'Visibility',
                 unit: 'm',
                 value: props.data.visibility,
             },
             shortwave_radiation: {
-                label: 'Radiacion de Onda Corta',
+                label: 'Shortwave Radiation',
                 unit: 'W/m²',
                 value: props.data.shortwave_radiation,
             }

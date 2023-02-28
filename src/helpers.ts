@@ -1,6 +1,6 @@
 import { getDay, getHours, format } from 'date-fns'
 
-const DAYS = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado']
+const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 
 export function roundTemperature(temperature: number | string, withSymbol = false): string {
     const symbol = withSymbol ? '°C' : ''
