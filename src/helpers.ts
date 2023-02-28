@@ -7,21 +7,21 @@ export function roundTemperature(temperature: number | string, withSymbol = fals
     return `${Math.round(parseFloat(String(temperature)))}${symbol}`
 }
 
-export function getDayName(date?: string) {
+export function getDayName(date?: string): string {
     const currentDate = date ? new Date(date + 'T00:00:00') : new Date()
     return DAYS[getDay(currentDate)]
 }
 
-export function getCurrentHourIndex() {
+export function getCurrentHourIndex(): number {
     const currentDate = new Date()
     return getHours(currentDate)
 }
 
-export function getHourFromDate(date: string) {
+export function getHourFromDate(date: string): string {
     return format(new Date(date), 'HH:mm')
 }
 
-export function getCurrentDateAndNext4Days() {
+export function getCurrentDateAndNext4Days(): [string, string] {
     const currentDate = new Date()
 
     return [
