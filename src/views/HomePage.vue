@@ -1,6 +1,10 @@
 <template>
     <IonPage>
         <IonContent :fullscreen="true">
+            <IonRefresher slot="fixed" @ionRefresh="handleRefresh">
+                <IonRefresherContent></IonRefresherContent>
+            </IonRefresher>
+
             <IonRow v-if="weather.current_weather">
                 <IonCol>
                     <CurrentWeather
@@ -49,7 +53,7 @@
     import SunInformation from "@/components/HomePage/SunInformation.vue";
     import WeatherForecast from "@/components/HomePage/WeatherForecast.vue";
     import WindInformation from "@/components/HomePage/WindInformation.vue";
-    import { IonCol, IonRow, IonContent, IonPage } from '@ionic/vue'
+    import { IonCol, IonRow, IonContent, IonPage, IonRefresher, IonRefresherContent } from '@ionic/vue'
 
     import WeatherForecastService from "@/services/WeatherForecast";
     import { reactive, computed, onMounted } from "vue";
@@ -61,4 +65,9 @@
     onMounted(async () => {
         await weatherService.loadWeatherInfo()
     })
+
+    async function handleRefresh(event: CustomEvent) {
+        await weatherService.loadWeatherInfo();
+        (event.target as any).complete();
+    }
 </script>
