@@ -1,7 +1,7 @@
 <template>
     <div class="ion-text-center text-container">
         <IonText>
-            <h1 style="position: relative">
+            <h1 style="position: relative; font-size: 3rem;">
                 {{ roundTemperature(currentWeather.temperature, false) }} 
                 <small style="font-size:55%; position: absolute; top:3px">°C</small>
             </h1>

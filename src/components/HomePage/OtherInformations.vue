@@ -7,10 +7,10 @@
                         <IonCol size="9">
                             <p>{{ info.label }}</p>
                         </IonCol>
-                        <IonCol size="3">
-                            <small>
+                        <IonCol size="3" class="ion-align-self-center">
+                            <p>
                                 {{ info.value[timeIndex] }} {{ info.unit }}
-                            </small>
+                            </p>
                         </IonCol>
                     </IonRow>
                 </IonItem>
@@ -32,27 +32,27 @@
     const information = computed(() => {
         return {
             apparent_temperature: {
-                label: 'Apparent Temperature',
+                label: 'Sensacion Termica',
                 unit: '°C',
                 value: props.data.apparent_temperature,
             },
             relativehumidity_2m: {
-                label: 'Humidity',
+                label: 'Humedad',
                 unit: '%',
                 value: props.data.relativehumidity_2m,
             },
             cloudcover: {
-                label: 'Cloud Cover',
+                label: 'Cobertura de Nubes',
                 unit: '%',
                 value: props.data.cloudcover,
             },
             visibility: {
-                label: 'Visibility',
+                label: 'Visibilidad',
                 unit: 'm',
                 value: props.data.visibility,
             },
             shortwave_radiation: {
-                label: 'Shortwave Radiation',
+                label: 'Radiacion de Onda Corta',
                 unit: 'W/m²',
                 value: props.data.shortwave_radiation,
             }

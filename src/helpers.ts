@@ -1,4 +1,4 @@
-import { getDay, getHours } from 'date-fns'
+import { getDay, getHours, format } from 'date-fns'
 
 const DAYS = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado']
 
@@ -15,4 +15,8 @@ export function getDayName(date?: string) {
 export function getCurrentHourIndex() {
     const currentDate = new Date()
     return getHours(currentDate)
+}
+
+export function getHourFromDate(date: string) {
+    return format(new Date(date), 'HH:mm')
 }

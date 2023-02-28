@@ -1,8 +1,14 @@
 <template>
     <IonCard class="ion-no-padding ion-no-margin">
         <IonCardContent class="ion-padding-vertical">
-            <h3>Direccion: {{ direction }}</h3>
-            <p>Speed: {{ speed }}</p>
+            <div>
+                <p><strong>Direccion:</strong></p>
+                <p>{{ direction }}°</p>
+            </div>
+            <div>
+                <p><strong>Velocidad:</strong></p>
+                <p>{{ speed }} km/h</p>
+            </div>
         </IonCardContent>
     </IonCard>
 </template>
